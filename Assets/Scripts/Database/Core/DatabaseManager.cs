@@ -38,7 +38,7 @@ namespace ORMish
                 Directory.CreateDirectory(_tablesPath);
                 Debug.Log("[DatabaseTests] Tables Directory created: " + _tablesPath);
             }
-            User.Table = new Table<User>(_tablesPath);
+            UserCharacter.Table = new Table<UserCharacter>(_tablesPath);
             Score.Table = new Table<Score>(_tablesPath);
         }
 

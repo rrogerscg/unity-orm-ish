@@ -3,24 +3,24 @@ using UnityEngine;
 
 namespace ORMish
 {
-    public class UniqueUserNameError : Exception
+    public class UniqueUserCharacterNameError : Exception
     {
-        public UniqueUserNameError() : base("User name must be unique.")
+        public UniqueUserCharacterNameError() : base("User name must be unique.")
         {
         }
 
-        public UniqueUserNameError(string message) : base(message)
+        public UniqueUserCharacterNameError(string message) : base(message)
         {
         }
 
-        public UniqueUserNameError(string message, Exception innerException) : base(message, innerException)
+        public UniqueUserCharacterNameError(string message, Exception innerException) : base(message, innerException)
         {
         }
     }
 
 
     [Serializable]
-    public class User : Record<User>
+    public class UserCharacter : Record<UserCharacter>
     {
 
         [SerializeField]
@@ -36,7 +36,7 @@ namespace ORMish
 
 
         // Required constructor to use for generic type
-        public User() : base()
+        public UserCharacter() : base()
         {
         }
 
@@ -44,11 +44,11 @@ namespace ORMish
         // TODO: Hair, Sking, And Eyes SHOULD be a color object.  Lets make a json converted for this.
         // As of now, its a complex property with circular references and causes to a stack overflow error.
         // Converting to Vector4 does not work.
-        public User(string name, string hairColor, string skinColor, string eyeColor) : base()
+        public UserCharacter(string name, string hairColor, string skinColor, string eyeColor) : base()
         {
-            if (!UserNameIsUnique(name))
+            if (!UserCharacterNameIsUnique(name))
             {
-                throw new UniqueUserNameError("User name must be unique.");
+                throw new UniqueUserCharacterNameError("User name must be unique.");
             }
             Name = name;
             HairColor = hairColor;
@@ -62,9 +62,9 @@ namespace ORMish
             return HashCode.Combine(Id, CreationDate, IsActive, Name);
         }
 
-        private static bool UserNameIsUnique(string name)
+        private static bool UserCharacterNameIsUnique(string name)
         {
-            foreach (User user in GetAll())
+            foreach (UserCharacter user in GetAll())
             {
                 if (user.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
                 {
@@ -74,9 +74,9 @@ namespace ORMish
             return true;
         }
 
-        public static User GetActiveUser()
+        public static UserCharacter GetActiveCharacter()
         {
-            foreach (User user in GetAll())
+            foreach (UserCharacter user in GetAll())
             {
                 if (user.IsActive)
                 {
@@ -86,13 +86,13 @@ namespace ORMish
             return null;
         }
 
-        public void SetAsActiveUser()
+        public void SetAsActiveUserCharacter()
         {
-            User activeUser = GetActiveUser();
-            if (activeUser != null)
+            UserCharacter activeUserCharacter = GetActiveCharacter();
+            if (activeUserCharacter != null)
             {
-                activeUser.IsActive = false;
-                activeUser.Put();
+                activeUserCharacter.IsActive = false;
+                activeUserCharacter.Put();
             }
             IsActive = true;
             Put();

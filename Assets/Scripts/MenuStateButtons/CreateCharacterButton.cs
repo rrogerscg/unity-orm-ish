@@ -39,17 +39,17 @@ namespace ORMish
             try
             {
 
-                User newUser = new(nameInput.GetValue(),
+                UserCharacter newUser = new(nameInput.GetValue(),
                                    skinColorManager.getSelectedColorHash().colorName,
                                    hairColorManager.getSelectedColorHash().colorName,
                                    eyeColorManager.getSelectedColorHash().colorName);
 
-                newUser.SetAsActiveUser();
+                newUser.SetAsActiveUserCharacter();
                 newUser.Put();
-                User.SaveTable();
+                UserCharacter.SaveTable();
                 SceneStateManager.Instance.ChangeState(nextScene);
             }
-            catch (UniqueUserNameError e)
+            catch (UniqueUserCharacterNameError e)
             {
                 // Tell user that name is not unique
                 Debug.LogError(e);

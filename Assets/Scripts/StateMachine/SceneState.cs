@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static ORMish.UnlockableScriptableObject;
 
 namespace ORMish
 {
@@ -14,9 +13,6 @@ namespace ORMish
         }
         [SerializeField]
         public EGameNames GameName;
-
-        [SerializeField]
-        public ETheme Theme;
 
         public enum ESceneType
         {
@@ -43,10 +39,6 @@ namespace ORMish
                     break;
                 case ESceneType.LevelSelect:
                     _name = ESceneType.LevelSelect.ToString();
-                    break;
-                case ESceneType.ThemeSelection:
-                    _name = ESceneType.ThemeSelection.ToString();
-                    GameManager.Instance.LoadThemesByActiveGameName();
                     break;
             }
             StartCoroutine(LoadScene());

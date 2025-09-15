@@ -14,8 +14,6 @@ namespace ORMish
     {
         private static PersistenceManager _instance;
         private DatabaseManager _databaseManager = DatabaseManager.Instance;
-        private User _activeUser;
-        public User ActiveUser => _activeUser;
 
         public static PersistenceManager Instance
         {
@@ -26,25 +24,16 @@ namespace ORMish
             }
         }
 
+        private List<UserCharacter> _userCharacters = new();
+        public List<UserCharacter> UserCharacters => _userCharacters;
+        private UserCharacter _activeUserCharacter;
+        public UserCharacter ActiveUserCharacter => _activeUserCharacter;
+
+        public bool UserCharactersExist => UserCharacters.Count > 0;
+
         public void Initialize()
         {
             _databaseManager.Initialize(Path.Combine(Application.persistentDataPath, "tables"));
-            List<User> users = User.GetAll();
-            foreach(User user in users)
-            {
-                Debug.Log("User found: " + user.Name);
-                Debug.Log("User id: " + user.Id);
-                Debug.Log("User IsActive: " + user.IsActive);
-            }
-            _activeUser = User.GetActiveUser();
-            if (_activeUser == null)
-            {
-                Debug.Log("No active user found");
-            }
-            else
-            {
-                Debug.Log("Active user found: " + _activeUser.Name);
-            }
         }
 
         public void SaveLevelData(Level level)
@@ -55,8 +44,28 @@ namespace ORMish
         public void Save()
         {
             Debug.Log("Saving Database Tables");
-            User.SaveTable();
+            UserCharacter.SaveTable();
             Score.SaveTable();
+        }
+
+        public void LoadUserCharacters()
+        {
+            _userCharacters = UserCharacter.GetAll();
+            foreach (UserCharacter userCharacter in _userCharacters)
+            {
+                Debug.Log("UserCharacter found: " + userCharacter.Name);
+                Debug.Log("UserCharacter id: " + userCharacter.Id);
+                Debug.Log("UserCharacter IsActive: " + userCharacter.IsActive);
+            }
+            _activeUserCharacter = UserCharacter.GetActiveCharacter();
+            if (_activeUserCharacter == null)
+            {
+                Debug.Log("No active user character found");
+            }
+            else
+            {
+                Debug.Log("Active user character found: " + _activeUserCharacter.Name);
+            }
         }
     }
 }

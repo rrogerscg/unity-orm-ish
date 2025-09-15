@@ -10,7 +10,7 @@ public abstract class BaseTestFixture
     public virtual void SetUp()
     {
         tableDirectory = Path.Combine(Application.temporaryCachePath, "tables");
-        User.Table = new Table<User>(tableDirectory);
+        UserCharacter.Table = new Table<UserCharacter>(tableDirectory);
         Score.Table = new Table<Score>(tableDirectory);
     }
 

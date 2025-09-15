@@ -12,8 +12,6 @@ namespace ORMish
         public List<Sprite> Sprites;
         // the puzzles piece that should be replicated in the game ie. the coin for the coin game, or the crayon for the color matching game
         public GameObject Prefab;
-        // the theme of the game
-        public UnlockableScriptableObject.ETheme Theme;
         // the name of the game
         public SceneState.EGameNames GameName;
         // the music that should be played for the specific game

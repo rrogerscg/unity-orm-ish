@@ -49,7 +49,6 @@ namespace ORMish
             }
             else
             {
-                GameManager.Instance.GetScriptableObjectsByGame(_gameDataList);
                 Debug.Log($"Loaded GameData count: {_gameDataList.Count}");
                 Awake_LoadPrefabs();
                 Awake_InstantiateObjectsFromPrefabs();
