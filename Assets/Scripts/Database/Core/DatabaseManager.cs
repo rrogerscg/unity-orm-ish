@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
@@ -53,6 +54,14 @@ namespace ORMish
         public void SaveAllRecords()
         {
             
+        }
+
+        public List<string> GetAllTableNames()
+        {
+            List<Type> derivedTypes = ReflectionHelper.GetDerivedTypes(typeof(Record<>));
+            return derivedTypes
+                .Select(t => t.Name)
+                .ToList();
         }
     }
 }
