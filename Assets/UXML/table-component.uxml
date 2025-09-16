@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/table-component.uss?fileID=7433441132597879392&amp;guid=570ac16ee24640548811c9c29019aa1e&amp;type=3#table-component" />
+    <ui:VisualElement name="Panel" class="panel" style="flex-grow: 1; background-color: rgb(27, 26, 79);">
+        <ui:VisualElement name="PanelHeader" class="panelHeader" style="flex-grow: 1;">
+            <ui:Label text="Database View" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ControlHeader" class="panelHeader" style="flex-grow: 1; border-top-width: 5px;">
+            <ui:DropdownField label="Table&#10;" name="TableDropdown" style="width: 30%; margin-left: 0%;" />
+        </ui:VisualElement>
+        <ui:MultiColumnListView>
+            <ui:Columns />
+        </ui:MultiColumnListView>
+    </ui:VisualElement>
+</ui:UXML>
