@@ -4,10 +4,13 @@ using UnityEngine.UIElements;
 public class ToggleGameObject : MonoBehaviour
 {
     [SerializeField]
+    private GameObject _uiGameObject;
     private UIDocument _uiDocument;
 
     private void Start()
     {
+        _uiGameObject.SetActive(true);
+        _uiDocument = _uiGameObject.GetComponent<UIDocument>();
         _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
     }
 

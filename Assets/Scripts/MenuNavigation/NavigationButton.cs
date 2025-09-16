@@ -11,12 +11,30 @@ namespace ORMish
         [SerializeField]
         private ENavigationMenu _navTo;
 
+        private void OnEnable()
+        {
+            PersistenceEvents.UserCharactersExist += UserCharactersExist;
+        }
+
+        private void OnDisable()
+        {
+            PersistenceEvents.UserCharactersExist -= UserCharactersExist;
+        }
+
         public void OnNavigationButtonUsed()
         {
-            //NavigationEvents.OnNavigateToMenu?.Invoke(_navTo);
-            UserCharacter c = new UserCharacter("KELSI", "BLONDE", "WHITE", "HAZEL");
-            c.Put();
-            UserCharacter.Table.Save();
+            NavigationEvents.OnNavigateToMenu?.Invoke(_navTo);
+        }
+
+        private void UserCharactersExist(bool exists)
+        {
+            if(!exists && _navTo == ENavigationMenu.SelectCharacter)
+            {
+                GetComponent<Button>().interactable = false;
+            } else
+            {
+                GetComponent<Button>().interactable = true;
+            }
         }
     }
 }

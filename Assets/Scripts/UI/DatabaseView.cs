@@ -98,12 +98,6 @@ namespace ORMish
             });
         }
 
-        // Setting the ui element in OnEnable seems to work, vs Awake or Start
-        private void OnEnable()
-        {
-            
-        }
-
         public static Dictionary<string, string> GetObjectFields(object obj)
         {
             Dictionary<string, string> fields = new();
