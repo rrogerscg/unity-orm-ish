@@ -7,13 +7,11 @@ using UnityEngine;
 
 namespace ORMish
 {
-    /// <summary>
-    /// Manages all database tables.
-    /// </summary>
     public class DatabaseManager
     {
         private static DatabaseManager _instance;
         private static string _tablesPath;
+        public static Dictionary<string, ITable<IRecord>> _modelByModelName = new();
 
         public static DatabaseManager Instance
         {
@@ -41,6 +39,8 @@ namespace ORMish
             }
             UserCharacter.Table = new Table<UserCharacter>(_tablesPath);
             Score.Table = new Table<Score>(_tablesPath);
+
+            TableRegistry.PrintRegistry();
         }
 
         public static void DeleteDatabase()
@@ -49,11 +49,6 @@ namespace ORMish
             {
                 Directory.Delete(_tablesPath, true);
             }
-        }
-
-        public void SaveAllRecords()
-        {
-            
         }
 
         public List<string> GetAllTableNames()

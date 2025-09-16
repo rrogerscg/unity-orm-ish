@@ -3,16 +3,21 @@ using System.Collections.Generic;
 
 namespace ORMish
 {
-    public interface ITable<T>
+    public interface ITable
     {
-        void PutRecord(T record);
-        void DeleteRecord(T record);
-
+        string Name { get; }
+        string TableFilePath { get; }
         void Initialize();
         void DeleteAllRecords();
         void Save();
+
+        IEnumerable<IRecord> GetRecords();
+
+    }
+    public interface ITable<T> : ITable
+    {
+        void PutRecord(T record);
+        void DeleteRecord(T record);
         Dictionary<Guid, T> Records { get; }
-        string Name { get; }
-        string TableFilePath { get; }
     }
 }

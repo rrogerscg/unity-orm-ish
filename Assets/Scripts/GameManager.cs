@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 using static ORMish.SceneState;
 
 
@@ -42,17 +41,19 @@ namespace ORMish
             }
             _instance = this;
             _userIsSubscribed = false;
-            DontDestroyOnLoad(gameObject);
-        }
+            DontDestroyOnLoad(gameObject);        }
 
         private void Start()
         {
             PersistenceManager.Instance.Initialize();
             PersistenceManager.Instance.LoadUserCharacters();
-            //if(PersistenceManager.Instance.UserCharactersExist == false)
-            //{
-            //    _selectCharacterButton.GetComponent<Button>().interactable = false;
-            //}
+            if (PersistenceManager.Instance.UserCharactersExist == false)
+            {
+                UserCharacter newChar = new UserCharacter("Russ", "Blonde", "White", "Blue");
+                newChar.Put();
+                PersistenceManager.Instance.Save();
+                //_selectCharacterButton.GetComponent<Button>().interactable = false;
+            }
         }
 
         public bool CharacterDataIsLoaded()

@@ -5,10 +5,12 @@
             <ui:Label text="Database View" />
         </ui:VisualElement>
         <ui:VisualElement name="ControlHeader" class="panelHeader" style="flex-grow: 1; border-top-width: 5px;">
-            <ui:DropdownField label="Table&#10;" name="TableDropdown" style="width: 30%; margin-left: 0%;" />
+            <ui:DropdownField label="Table&#10;" name="TableDropdown" style="width: 40%; margin-left: 0%;">
+                <Bindings>
+                    <ui:DataBinding property="choices" data-source-path="TableNames" data-source="project://database/Assets/Scripts/State/DatabaseStats.asset?fileID=11400000&amp;guid=9a35ab299d97dab458a85d2bb9ca5db0&amp;type=2#DatabaseStats" binding-mode="ToTarget" />
+                </Bindings>
+            </ui:DropdownField>
         </ui:VisualElement>
-        <ui:MultiColumnListView>
-            <ui:Columns />
-        </ui:MultiColumnListView>
+        <ui:MultiColumnListView style="min-height: 5%;" />
     </ui:VisualElement>
 </ui:UXML>

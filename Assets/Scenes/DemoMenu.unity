@@ -1203,7 +1203,6 @@ GameObject:
   m_Component:
   - component: {fileID: 859232464}
   - component: {fileID: 859232467}
-  - component: {fileID: 859232466}
   - component: {fileID: 859232465}
   m_Layer: 5
   m_Name: ToggleButtonCanvas
@@ -1249,29 +1248,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &859232466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859232463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!223 &859232467
 Canvas:
   m_ObjectHideFlags: 0
@@ -1305,13 +1281,14 @@ GameObject:
   m_Component:
   - component: {fileID: 898144903}
   - component: {fileID: 898144904}
+  - component: {fileID: 898144905}
   m_Layer: 5
   m_Name: DatabaseView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &898144903
 Transform:
   m_ObjectHideFlags: 0
@@ -1350,6 +1327,19 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &898144905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898144902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acad633707f86ea4983294365adca164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _dataStats: {fileID: 11400000, guid: 9a35ab299d97dab458a85d2bb9ca5db0, type: 2}
 --- !u!1 &953504611
 GameObject:
   m_ObjectHideFlags: 0
@@ -2689,7 +2679,6 @@ GameObject:
   - component: {fileID: 1772594278}
   - component: {fileID: 1772594277}
   - component: {fileID: 1772594276}
-  - component: {fileID: 1772594280}
   m_Layer: 5
   m_Name: DatabaseCanvas
   m_TagString: Untagged
@@ -2781,19 +2770,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1772594280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1772594275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd8a14f443c3de04db3d79cdd0e9f99f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ORMIsh.DatabaseViewController
-  _databaseView: {fileID: 898144902}
 --- !u!1 &1792725235
 GameObject:
   m_ObjectHideFlags: 0

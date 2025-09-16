@@ -91,8 +91,11 @@ namespace ORMish
             UserCharacter activeUserCharacter = GetActiveCharacter();
             if (activeUserCharacter != null)
             {
-                activeUserCharacter.IsActive = false;
-                activeUserCharacter.Put();
+                if (activeUserCharacter.IsActive)
+                {
+                    activeUserCharacter.IsActive = false;
+                    activeUserCharacter.Put();
+                }
             }
             IsActive = true;
             Put();

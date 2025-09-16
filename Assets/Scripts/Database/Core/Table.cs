@@ -1,7 +1,8 @@
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace ORMish
@@ -25,6 +26,7 @@ namespace ORMish
             {
                 File.Create(_tableFilePath).Close();
             }
+            TableRegistry.Register(this);
             Initialize();
         }
 
@@ -32,6 +34,11 @@ namespace ORMish
         {
             _records.Clear();
             _records = LoadRecords();
+        }
+
+        public IEnumerable<IRecord> GetRecords()
+        {
+            return _records.Values.Cast<IRecord>();
         }
 
         public Dictionary<Guid, TRecord> LoadRecords()

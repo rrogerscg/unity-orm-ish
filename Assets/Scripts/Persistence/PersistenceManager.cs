@@ -33,6 +33,7 @@ namespace ORMish
 
         public void Initialize()
         {
+            Debug.Log($"Application persistence path is set to {Application.persistentDataPath}");
             _databaseManager.Initialize(Path.Combine(Application.persistentDataPath, "tables"));
         }
 
