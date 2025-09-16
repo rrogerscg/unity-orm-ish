@@ -11,7 +11,7 @@ namespace ORMish
         void DeleteAllRecords();
         void Save();
 
-        IEnumerable<IRecord> GetRecords();
+        List<IRecord> GetRecords();
 
     }
     public interface ITable<T> : ITable

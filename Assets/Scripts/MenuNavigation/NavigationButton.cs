@@ -13,7 +13,10 @@ namespace ORMish
 
         public void OnNavigationButtonUsed()
         {
-            NavigationEvents.OnNavigateToMenu?.Invoke(_navTo);
+            //NavigationEvents.OnNavigateToMenu?.Invoke(_navTo);
+            UserCharacter c = new UserCharacter("KELSI", "BLONDE", "WHITE", "HAZEL");
+            c.Put();
+            UserCharacter.Table.Save();
         }
     }
 }

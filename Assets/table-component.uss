@@ -29,3 +29,13 @@
     color: rgb(255, 0, 210);
     -unity-font-style: bold;
 }
+
+.tableHeader {
+    font-size: 28px;
+    -unity-font-style: bold;
+}
+
+.tableRow {
+    font-size: 28px;
+    -unity-font-style: bold;
+}

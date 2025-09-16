@@ -1,20 +1,22 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ToggleGameObject : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _uiDocGameObject;
+    private UIDocument _uiDocument;
 
     private void Start()
     {
-        _uiDocGameObject.SetActive(false);
+        _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
     }
 
     public void Toggle()
     {
-        if(_uiDocGameObject != null)
+        if(_uiDocument != null)
         {
-            _uiDocGameObject.SetActive(!_uiDocGameObject.activeSelf);
+            StyleEnum<DisplayStyle> style = _uiDocument.rootVisualElement.style.display;
+            _uiDocument.rootVisualElement.style.display = style == DisplayStyle.None ? DisplayStyle.Flex : DisplayStyle.None;
         }
     }
 }

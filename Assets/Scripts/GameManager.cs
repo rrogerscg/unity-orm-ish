@@ -49,9 +49,12 @@ namespace ORMish
             PersistenceManager.Instance.LoadUserCharacters();
             if (PersistenceManager.Instance.UserCharactersExist == false)
             {
-                UserCharacter newChar = new UserCharacter("Russ", "Blonde", "White", "Blue");
-                newChar.Put();
-                PersistenceManager.Instance.Save();
+                //UserCharacter newChar = new UserCharacter("Russ", "Blonde", "White", "Blue");
+                //newChar.Put();
+                //PersistenceManager.Instance.Save();
+                //UserCharacter nc = new UserCharacter("Jett", "Blonde", "White", "Blue");
+                //nc.Put();
+                //UserCharacter.Table.Save();
                 //_selectCharacterButton.GetComponent<Button>().interactable = false;
             }
         }

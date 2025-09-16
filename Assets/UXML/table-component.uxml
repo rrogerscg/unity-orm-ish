@@ -11,6 +11,9 @@
                 </Bindings>
             </ui:DropdownField>
         </ui:VisualElement>
-        <ui:MultiColumnListView style="min-height: 5%;" />
+        <ui:MultiColumnListView name="RecordsTable" fixed-item-height="40" style="min-height: auto; font-size: 36px; -unity-font-style: bold;">
+            <ui:Columns resize-preview="true" />
+            <ui:SortColumnDescriptions />
+        </ui:MultiColumnListView>
     </ui:VisualElement>
 </ui:UXML>

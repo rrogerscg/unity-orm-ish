@@ -11,7 +11,7 @@ namespace ORMish
     {
         private Dictionary<Guid, TRecord> _records = new();
         public Dictionary<Guid, TRecord> Records => _records;
-        public string Name => typeof(TRecord).Name + "s";
+        public string Name => typeof(TRecord).Name;
         private readonly string _tableFilePath;
         public string TableFilePath => _tableFilePath;
 
@@ -36,9 +36,9 @@ namespace ORMish
             _records = LoadRecords();
         }
 
-        public IEnumerable<IRecord> GetRecords()
+        public List<IRecord> GetRecords()
         {
-            return _records.Values.Cast<IRecord>();
+            return _records.Values.Cast<IRecord>().ToList();
         }
 
         public Dictionary<Guid, TRecord> LoadRecords()
