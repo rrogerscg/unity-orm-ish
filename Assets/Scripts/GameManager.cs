@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using static ORMish.SceneState;
 
@@ -89,14 +88,11 @@ namespace ORMish
 
         private void OnExitGameAction()
         {
-            if (Application.isEditor)
-            {
-                EditorApplication.isPlaying = false;
-            }
-            else
-            {
-                Application.Quit();
-            }
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
         }
 
         private void Update()
