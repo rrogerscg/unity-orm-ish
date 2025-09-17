@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using Newtonsoft.Json;
-using UnityEngine;
 
 namespace ORMish
 {
@@ -52,7 +51,7 @@ namespace ORMish
                 }
                 else
                 {
-                    Debug.Log("No records found for type: " + Name);
+                    Console.WriteLine("No records found for type: " + Name);
                 }
             }
             return records;
@@ -76,7 +75,7 @@ namespace ORMish
 
         public void PutRecord(TRecord record)
         {
-            Debug.Log("PutRecord for type: " + Name);
+            Console.WriteLine("PutRecord for type: " + Name);
             if (_records.ContainsKey(record.Id))
             {
                 _records[record.Id] = record;
@@ -91,8 +90,8 @@ namespace ORMish
         public void Save()
         {
             string json = JsonConvert.SerializeObject(_records, Formatting.Indented);
-            Debug.Log("TableFilePath");
-            Debug.Log(TableFilePath);
+            Console.WriteLine("TableFilePath");
+            Console.WriteLine(TableFilePath);
             File.WriteAllText(TableFilePath, json);
         }
 

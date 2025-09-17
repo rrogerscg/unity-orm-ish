@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace ORMish
 {
@@ -23,15 +22,10 @@ namespace ORMish
     public class UserCharacter : Record<UserCharacter>
     {
 
-        [SerializeField]
         public string Name { get; set; }
-        [SerializeField]
         public bool IsActive;
-        [SerializeField]
         public string HairColor { get; set; }
-        [SerializeField]
         public string SkinColor { get; set; }
-        [SerializeField]
         public string EyeColor { get; set; }
 
 

@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using UnityEngine;
 
 namespace ORMish
 {
@@ -21,7 +19,7 @@ namespace ORMish
                 if (_instance == null)
                 {
                     _instance = new DatabaseManager();
-                    Debug.Log("DatabaseManager created.");
+                    Console.WriteLine("DatabaseManager created.");
                 }
 
                 return _instance;
@@ -35,7 +33,7 @@ namespace ORMish
             if (!Directory.Exists(_tablesPath))
             {
                 Directory.CreateDirectory(_tablesPath);
-                Debug.Log("[DatabaseTests] Tables Directory created: " + _tablesPath);
+                Console.WriteLine("[DatabaseTests] Tables Directory created: " + _tablesPath);
             }
             UserCharacter.Table = new Table<UserCharacter>(_tablesPath);
             Score.Table = new Table<Score>(_tablesPath);

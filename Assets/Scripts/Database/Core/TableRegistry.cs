@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ORMish
 {
@@ -15,10 +15,10 @@ namespace ORMish
 
         public static void PrintRegistry()
         {
-            Debug.Log("TableRegistry contains the following tables");
+            Console.WriteLine("TableRegistry contains the following tables");
             foreach(KeyValuePair<string, ITable> kvp in _tablesByTableName)
             {
-                Debug.Log($"{kvp.Key}: {kvp.Value}");
+                Console.WriteLine($"{kvp.Key}: {kvp.Value}");
             }
         }
     }

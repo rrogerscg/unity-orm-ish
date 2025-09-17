@@ -1,14 +1,11 @@
 using System;
-using UnityEngine;
 
 namespace ORMish
 {
     [Serializable]
     public class Score : Record<Score>
     {
-        [SerializeField]
         public int Value { get; set; }
-        [SerializeField]
         public string Name { get; set; }
 
         // Required constructor to use for generic type

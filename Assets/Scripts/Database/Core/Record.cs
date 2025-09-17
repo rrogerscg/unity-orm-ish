@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace ORMish
 {
@@ -11,9 +10,7 @@ namespace ORMish
 
         public static ITable<T> Table;
         // Instance Fields
-        [SerializeField]
         private readonly Guid _id;
-        [SerializeField]
         private readonly DateTime _creationDate;
 
         public Guid Id
@@ -49,7 +46,7 @@ namespace ORMish
         {
             if (Table.Records.Count == 0)
             {
-                Debug.Log("The dictionary is empty.");
+                Console.WriteLine("The dictionary is empty.");
                 return new List<T>();
             }
             return Table.Records.Values.ToList();
