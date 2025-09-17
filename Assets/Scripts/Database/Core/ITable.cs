@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ORMish
 {
@@ -11,13 +12,12 @@ namespace ORMish
         void DeleteAllRecords();
         void Save();
 
-        List<IRecord> GetRecords();
-
+        ObservableCollection<IRecord> RecordsObservable { get; }
     }
-    public interface ITable<T> : ITable
+    public interface ITable<IRecord> : ITable
     {
-        void PutRecord(T record);
-        void DeleteRecord(T record);
-        Dictionary<Guid, T> Records { get; }
+        void PutRecord(IRecord record);
+        void DeleteRecord(IRecord record);
+        Dictionary<Guid, IRecord> Records { get; }
     }
 }

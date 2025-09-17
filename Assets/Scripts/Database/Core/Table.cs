@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -14,6 +14,9 @@ namespace ORMish
         public string Name => typeof(TRecord).Name;
         private readonly string _tableFilePath;
         public string TableFilePath => _tableFilePath;
+
+        private ObservableCollection<IRecord> _recordsObservable = new();
+        public ObservableCollection<IRecord> RecordsObservable => _recordsObservable;
 
         public Table(string tableDirectory)
         {
@@ -36,11 +39,6 @@ namespace ORMish
             _records = LoadRecords();
         }
 
-        public List<IRecord> GetRecords()
-        {
-            return _records.Values.Cast<IRecord>().ToList();
-        }
-
         public Dictionary<Guid, TRecord> LoadRecords()
         {
             Dictionary<Guid, TRecord> records = new();
@@ -50,6 +48,7 @@ namespace ORMish
                 if (json.Length > 0)
                 {
                     records = JsonConvert.DeserializeObject<Dictionary<Guid, TRecord>>(json);
+                    _recordsObservable = new ObservableCollection<IRecord>(records.Values);
                 }
                 else
                 {
@@ -65,6 +64,7 @@ namespace ORMish
             {
                 _records.Remove(record.Id);
             }
+            
         }
 
         public void DeleteAllRecords()
@@ -84,6 +84,7 @@ namespace ORMish
             else
             {
                 _records.Add(record.Id, record);
+                _recordsObservable.Add(record);
             }
         }
 
@@ -94,6 +95,7 @@ namespace ORMish
             Debug.Log(TableFilePath);
             File.WriteAllText(TableFilePath, json);
         }
+
     }
 }
 
