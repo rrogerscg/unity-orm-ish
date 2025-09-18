@@ -30,10 +30,9 @@ jobs:
       with:
         unityVersion: 6000.2.4f1   # Your Unity version
         targetPlatform: StandaloneWindows64
-        buildPath: Build/Windows
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: Windows-Build
-        path: Build/Windows
+        name: Buil
+        path: build
