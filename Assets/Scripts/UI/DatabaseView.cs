@@ -61,6 +61,8 @@ namespace Example
             _listView.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
 
             _dataStats.TableNames = DatabaseManager.Instance.GetAllTableNames();
+            string names = string.Join(",", _dataStats.TableNames);
+            Debug.Log($"Found the following table names from database manager '{names}'");
             _tableDropdown.RegisterValueChangedCallback(evt =>
             {
                 Debug.Log($"Table Selected: {evt.newValue}");
@@ -81,8 +83,11 @@ namespace Example
             }
 
             // Get the new table
-            ITable table = TableRegistry.TablesByTableName[tableName];
+            ITable table = TableRegistry.Instance.TablesByTableName[tableName];
+            Debug.Log($"Grabbing the table '{tableName}' to populate the DatabaseView");
             _dataSource = table.RecordsObservable;
+            Debug.Log($"Found {_dataSource.Count} records from database");
+
 
             // Configure columns based on the first record (if available)
             if (_dataSource.Count > 0)

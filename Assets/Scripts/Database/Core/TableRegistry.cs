@@ -3,17 +3,39 @@ using System.Collections.Generic;
 
 namespace ORMish
 {
-    public static class TableRegistry
+    public class TableRegistry
     {
-        private static Dictionary<string, ITable> _tablesByTableName = new();
-        public static IReadOnlyDictionary<string, ITable> TablesByTableName => _tablesByTableName;
+        private static TableRegistry _instance;
+        private static readonly object _lock = new object();
 
-        public static void Register(ITable table)
+        public static TableRegistry Instance
         {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (_lock)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new TableRegistry();
+                        }
+                    }
+                }
+                return _instance;
+            }
+        }
+
+        private Dictionary<string, ITable> _tablesByTableName = new();
+        public IReadOnlyDictionary<string, ITable> TablesByTableName => _tablesByTableName;
+
+        public void Register(ITable table)
+        {
+            UnityEngine.Debug.Log($"Registering table {table.Name} to the table registry");
             _tablesByTableName[table.Name] = table;
         }
 
-        public static void PrintRegistry()
+        public void PrintRegistry()
         {
             Console.WriteLine("TableRegistry contains the following tables");
             foreach(KeyValuePair<string, ITable> kvp in _tablesByTableName)

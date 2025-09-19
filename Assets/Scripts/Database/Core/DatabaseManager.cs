@@ -21,7 +21,7 @@ namespace ORMish
                 Console.WriteLine("[DatabaseTests] Tables Directory created: " + _tablesPath);
             }
 
-            TableRegistry.PrintRegistry();
+            TableRegistry.Instance.PrintRegistry();
         }
 
         public static DatabaseManager Initialize(string tablesPath)

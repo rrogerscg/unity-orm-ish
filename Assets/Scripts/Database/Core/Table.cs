@@ -24,11 +24,12 @@ namespace ORMish
                 Directory.CreateDirectory(DatabaseManager.Instance.TablesPath);
             }
             _tableFilePath = Path.Combine(DatabaseManager.Instance.TablesPath, Name + ".json");
+            UnityEngine.Debug.Log($"_tableFilePath: {_tableFilePath}");
             if (!File.Exists(_tableFilePath))
             {
                 File.Create(_tableFilePath).Close();
             }
-            TableRegistry.Register(this);
+            TableRegistry.Instance.Register(this);
             Initialize();
         }
 
