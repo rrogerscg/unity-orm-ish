@@ -7,13 +7,25 @@ namespace Example
     public class GameManager : MonoBehaviour
     {
         private static GameManager _instance;
+        private static readonly object _lock = new object();
+        private static PersistenceManager _persistenceManager;
         public static GameManager Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = FindFirstObjectByType<GameManager>();
+                    lock (_lock)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = FindFirstObjectByType<GameManager>();
+                        }
+                        if (_instance == null)
+                        {
+                            Debug.LogError("No GameManager found in scene!");
+                        }
+                    }
                 }
                 return _instance;
             }
@@ -21,8 +33,6 @@ namespace Example
 
         public Dictionary<bool, List<GameObject>> ThemeUnlockablesMap;
         public EGameNames ActiveGameName;
-
-        
 
         private bool _userIsSubscribed;
         public bool UserIsSubscribed => _userIsSubscribed;
@@ -40,20 +50,15 @@ namespace Example
             _instance = this;
             _userIsSubscribed = false;
             DontDestroyOnLoad(gameObject);
-            PersistenceManager.Instance.LoadUserCharacters();
+            _persistenceManager = PersistenceManager.Instance;
         }
 
         private void Start()
         {
-            if (PersistenceManager.Instance.UserCharactersExist == false)
+            _persistenceManager.LoadUserCharacters();
+            if (_persistenceManager.UserCharactersExist == false)
             {
                 PersistenceEvents.UserCharactersExist?.Invoke(false);
-                //UserCharacter newChar = new UserCharacter("Russ", "Blonde", "White", "Blue");
-                //newChar.Put();
-                //PersistenceManager.Instance.Save();
-                //UserCharacter nc = new UserCharacter("Jett", "Blonde", "White", "Blue");
-                //nc.Put();
-                //UserCharacter.Table.Save();
             }
         }
 

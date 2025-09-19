@@ -10,6 +10,7 @@ namespace ORMish
         private static DatabaseManager _instance;
         private readonly string _tablesPath;
         public string TablesPath => _tablesPath;
+        public static Dictionary<string, ITable<IRecord>> _modelByModelName = new();
 
         private DatabaseManager(string tablesPath)
         {

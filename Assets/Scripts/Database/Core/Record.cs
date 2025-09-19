@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SocialPlatforms.Impl;
 
 namespace ORMish
 {
@@ -8,7 +9,7 @@ namespace ORMish
     public abstract class Record<T> : IRecord where T : Record<T>, new()
     {
 
-        public static ITable<T> Table;
+        public static ITable<T> Table = new Table<T>();
         // Instance Fields
         private readonly Guid _id;
         private readonly DateTime _creationDate;

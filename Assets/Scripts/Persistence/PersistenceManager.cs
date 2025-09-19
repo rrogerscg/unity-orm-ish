@@ -1,7 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
-using UnityEngine;
 using ORMish;
+using UnityEngine;
 
 
 namespace Example
@@ -14,11 +15,24 @@ namespace Example
     public class PersistenceManager
     {
         private static PersistenceManager _instance;
+        private static readonly object _lock = new object();
 
         public static PersistenceManager Instance
         {
             get
             {
+                if (_instance == null)
+                {
+                    lock (_lock)
+                    {
+                        if (_instance == null)
+                        {
+                            Debug.Log($"Application persistence path is set to {Application.persistentDataPath}");
+                            DatabaseManager.Initialize(Path.Combine(Application.persistentDataPath, "tables"));
+                            _instance = new PersistenceManager();
+                        }
+                    }
+                }
                 return _instance;
             }
         }
@@ -29,17 +43,6 @@ namespace Example
         public UserCharacter ActiveUserCharacter => _activeUserCharacter;
 
         public bool UserCharactersExist => UserCharacters.Count > 0;
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void Initialize()
-        {
-            if (_instance == null)
-            {
-                Debug.Log($"Application persistence path is set to {Application.persistentDataPath}");
-                DatabaseManager.Initialize(Path.Combine(Application.persistentDataPath, "tables"));
-                _instance = new PersistenceManager();
-            }
-        }
 
         public void SaveLevelData(Level level)
         {
