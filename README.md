@@ -51,7 +51,7 @@ public class User : Record<User>
 
     }
 
-    public Score(string name, int value) : base()
+    public Score(string name, int age) : base()
     {
         Name = name;
         Age = age;
