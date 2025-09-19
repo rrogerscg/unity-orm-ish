@@ -3,7 +3,7 @@ using UnityEngine;
 using System;
 
 
-namespace ORMish
+namespace Example
 {
     public class FSMachine<EState> : MonoBehaviour where EState : Enum
     {

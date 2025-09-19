@@ -1,6 +1,6 @@
 using System;
 
-namespace ORMish
+namespace Example
 {
     public class PersistenceEvents
     {

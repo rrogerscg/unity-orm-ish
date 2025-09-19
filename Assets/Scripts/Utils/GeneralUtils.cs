@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ORMish
+namespace Example
 {
     public static class GeneralUtils
     {

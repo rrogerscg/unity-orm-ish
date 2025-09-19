@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ORMish
+namespace Example
 {
     [AddComponentMenu("ORMish/UI/Navigation Button")]
     [RequireComponent(typeof(Button))]

@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace ORMish
+namespace Example
 {
     public class LevelData : ILevelData
     {

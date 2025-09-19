@@ -1,5 +1,5 @@
 
-namespace ORMish
+namespace Example
 {
     public class SetCharacterCustomizationMenuButton : SetMenuStateButton
     {

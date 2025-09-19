@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace ORMish
+
+namespace Example
 {
     public class NewCharacterCreatorController : MonoBehaviour
     {

@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static ORMish.SceneState;
+using static Example.SceneState;
 
-
-namespace ORMish
+namespace Example
 {
     public class GameManager : MonoBehaviour
     {
@@ -40,12 +39,12 @@ namespace ORMish
             }
             _instance = this;
             _userIsSubscribed = false;
-            DontDestroyOnLoad(gameObject);        }
+            DontDestroyOnLoad(gameObject);
+            PersistenceManager.Instance.LoadUserCharacters();
+        }
 
         private void Start()
         {
-            PersistenceManager.Instance.Initialize();
-            PersistenceManager.Instance.LoadUserCharacters();
             if (PersistenceManager.Instance.UserCharactersExist == false)
             {
                 PersistenceEvents.UserCharactersExist?.Invoke(false);

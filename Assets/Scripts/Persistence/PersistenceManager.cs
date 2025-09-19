@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using ORMish;
 
 
-namespace ORMish
+namespace Example
 {
     /*
      * Manages the in-game persistence state of the character, as well as the between sessions states
@@ -13,13 +14,11 @@ namespace ORMish
     public class PersistenceManager
     {
         private static PersistenceManager _instance;
-        private DatabaseManager _databaseManager = DatabaseManager.Instance;
 
         public static PersistenceManager Instance
         {
             get
             {
-                _instance ??= new PersistenceManager();
                 return _instance;
             }
         }
@@ -31,10 +30,15 @@ namespace ORMish
 
         public bool UserCharactersExist => UserCharacters.Count > 0;
 
-        public void Initialize()
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void Initialize()
         {
-            Debug.Log($"Application persistence path is set to {Application.persistentDataPath}");
-            _databaseManager.Initialize(Path.Combine(Application.persistentDataPath, "tables"));
+            if (_instance == null)
+            {
+                Debug.Log($"Application persistence path is set to {Application.persistentDataPath}");
+                DatabaseManager.Initialize(Path.Combine(Application.persistentDataPath, "tables"));
+                _instance = new PersistenceManager();
+            }
         }
 
         public void SaveLevelData(Level level)

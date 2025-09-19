@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ORMish
+namespace Example
 {
     public class NavigationMenuManager : MonoBehaviour
     {

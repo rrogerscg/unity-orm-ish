@@ -8,26 +8,10 @@ namespace ORMish
     public class DatabaseManager
     {
         private static DatabaseManager _instance;
-        private static string _tablesPath;
-        public static Dictionary<string, ITable<IRecord>> _modelByModelName = new();
+        private readonly string _tablesPath;
+        public string TablesPath => _tablesPath;
 
-        public static DatabaseManager Instance
-        {
-            get
-            {
-
-                if (_instance == null)
-                {
-                    _instance = new DatabaseManager();
-                    Console.WriteLine("DatabaseManager created.");
-                }
-
-                return _instance;
-            }
-        }
-
-
-        public void Initialize(string tablesPath)
+        private DatabaseManager(string tablesPath)
         {
             _tablesPath = tablesPath;
             if (!Directory.Exists(_tablesPath))
@@ -35,17 +19,38 @@ namespace ORMish
                 Directory.CreateDirectory(_tablesPath);
                 Console.WriteLine("[DatabaseTests] Tables Directory created: " + _tablesPath);
             }
-            UserCharacter.Table = new Table<UserCharacter>(_tablesPath);
-            Score.Table = new Table<Score>(_tablesPath);
 
             TableRegistry.PrintRegistry();
         }
 
+        public static DatabaseManager Initialize(string tablesPath)
+        {
+            if (_instance == null)
+            {
+                _instance = new DatabaseManager(tablesPath);
+                Console.WriteLine("DatabaseManager created.");
+            }
+
+            return _instance;
+        }
+
+        public static DatabaseManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    throw new InvalidOperationException("DatabaseManager not initialized yet.");
+                }
+                return _instance;
+            }
+        }
+
         public static void DeleteDatabase()
         {
-            if(Directory.Exists(_tablesPath))
+            if(Directory.Exists(Instance.TablesPath))
             {
-                Directory.Delete(_tablesPath, true);
+                Directory.Delete(Instance.TablesPath, true);
             }
         }
 

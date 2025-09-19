@@ -1,6 +1,7 @@
 using System;
+using ORMish;
 
-namespace ORMish
+namespace Example
 {
     public class UniqueUserCharacterNameError : Exception
     {
@@ -95,4 +96,6 @@ namespace ORMish
             Put();
         }
     }
+
+
 }

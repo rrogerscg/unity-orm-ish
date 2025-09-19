@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace ORMish
+namespace Example
 {
     public class SceneState : MonoBehaviour, IState
     {

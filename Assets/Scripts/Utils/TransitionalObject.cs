@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace ORMish
+namespace Example
 {
     // This object will transition to have a new parent
     public class TransitionalObject : MonoBehaviour

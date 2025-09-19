@@ -1,25 +1,29 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ToggleGameObject : MonoBehaviour
+
+namespace Example
 {
-    [SerializeField]
-    private GameObject _uiGameObject;
-    private UIDocument _uiDocument;
-
-    private void Start()
+   public class ToggleGameObject : MonoBehaviour
     {
-        _uiGameObject.SetActive(true);
-        _uiDocument = _uiGameObject.GetComponent<UIDocument>();
-        _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
-    }
+        [SerializeField]
+        private GameObject _uiGameObject;
+        private UIDocument _uiDocument;
 
-    public void Toggle()
-    {
-        if(_uiDocument != null)
+        private void Start()
         {
-            StyleEnum<DisplayStyle> style = _uiDocument.rootVisualElement.style.display;
-            _uiDocument.rootVisualElement.style.display = style == DisplayStyle.None ? DisplayStyle.Flex : DisplayStyle.None;
+            _uiGameObject.SetActive(true);
+            _uiDocument = _uiGameObject.GetComponent<UIDocument>();
+            _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
+        }
+
+        public void Toggle()
+        {
+            if (_uiDocument != null)
+            {
+                StyleEnum<DisplayStyle> style = _uiDocument.rootVisualElement.style.display;
+                _uiDocument.rootVisualElement.style.display = style == DisplayStyle.None ? DisplayStyle.Flex : DisplayStyle.None;
+            }
         }
     }
 }

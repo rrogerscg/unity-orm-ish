@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace ORMish
+namespace Example
 {
     public class CustomMenu : MonoBehaviour
     {

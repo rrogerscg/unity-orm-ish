@@ -6,8 +6,9 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UIElements;
+using ORMish;
 
-namespace ORMish
+namespace Example
 {
     public class DatabaseView : MonoBehaviour
     {

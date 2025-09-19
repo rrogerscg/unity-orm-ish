@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ORMish
+namespace Example
 {
     public abstract class GameManagerBase : MonoBehaviour
     {

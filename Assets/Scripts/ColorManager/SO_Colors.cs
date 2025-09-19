@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace ORMish
+namespace Example
 {
     [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Colors", order = 1)]
     public class SO_Colors : ScriptableObject

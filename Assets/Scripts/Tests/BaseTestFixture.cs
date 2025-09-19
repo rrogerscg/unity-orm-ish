@@ -2,6 +2,7 @@ using ORMish;
 using NUnit.Framework;
 using System.IO;
 using UnityEngine;
+using Example;
 
 public abstract class BaseTestFixture
 {
@@ -10,8 +11,8 @@ public abstract class BaseTestFixture
     public virtual void SetUp()
     {
         tableDirectory = Path.Combine(Application.temporaryCachePath, "tables");
-        UserCharacter.Table = new Table<UserCharacter>(tableDirectory);
-        Score.Table = new Table<Score>(tableDirectory);
+        UserCharacter.Table = new Table<UserCharacter>();
+        Score.Table = new Table<Score>();
     }
 
     [TearDown]

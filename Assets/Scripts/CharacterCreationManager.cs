@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace ORMish
+namespace Example
 {
     public class CharacterCreationManager : MonoBehaviour
     {

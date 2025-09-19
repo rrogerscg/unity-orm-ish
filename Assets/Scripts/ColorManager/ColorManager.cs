@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ORMish
+namespace Example
 {
     public class ColorManager : MonoBehaviour
     {

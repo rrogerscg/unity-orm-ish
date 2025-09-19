@@ -17,13 +17,13 @@ namespace ORMish
         private ObservableCollection<IRecord> _recordsObservable = new();
         public ObservableCollection<IRecord> RecordsObservable => _recordsObservable;
 
-        public Table(string tableDirectory)
+        public Table()
         {
-            if (!Directory.Exists(tableDirectory))
+            if (!Directory.Exists(DatabaseManager.Instance.TablesPath))
             {
-                Directory.CreateDirectory(tableDirectory);
+                Directory.CreateDirectory(DatabaseManager.Instance.TablesPath);
             }
-            _tableFilePath = Path.Combine(tableDirectory, Name + ".json");
+            _tableFilePath = Path.Combine(DatabaseManager.Instance.TablesPath, Name + ".json");
             if (!File.Exists(_tableFilePath))
             {
                 File.Create(_tableFilePath).Close();

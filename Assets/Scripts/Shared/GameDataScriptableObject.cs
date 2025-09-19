@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ORMish
+namespace Example
 {
     [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/GameData", order = 5)]
     public class GameDataScriptableObject : ScriptableObject

@@ -1,4 +1,4 @@
-namespace ORMish
+namespace Example
 {
     public interface ILevelData
     {

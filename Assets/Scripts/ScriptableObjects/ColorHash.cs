@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace ORMish
+namespace Example
 {
     [System.Serializable]
     public class ColorHash
