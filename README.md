@@ -60,6 +60,8 @@ public class User : Record<User>
 ```
 2. Instantiate a model instance, commmit to in-memory database, then perist to JSON file
 ```csharp
+//Initialize Database Manager singleton and then call Initialize method with directory where you want the 'tables' folder to be created
+DatabaseManager.Instance.Initialize(<path/to/local/persistence/folder>);
 // create record
 User user = new User("rrogerscg", "37");
 // add record to in-memory database (record by record id hash table)
