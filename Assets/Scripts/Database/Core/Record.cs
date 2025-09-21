@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine;
 
 namespace ORMish
 {
@@ -9,10 +9,12 @@ namespace ORMish
     public abstract class Record<T> : IRecord where T : Record<T>, new()
     {
 
-        public static ITable<T> Table = new Table<T>();
+        private static ITable<T> _table;
+        public static ITable<T> Table => _table;
         // Instance Fields
         private readonly Guid _id;
         private readonly DateTime _creationDate;
+        private readonly string _type = typeof(T).Name;
 
         public Guid Id
         {
@@ -21,10 +23,15 @@ namespace ORMish
 
         public DateTime CreationDate => _creationDate;
 
+        public string Type
+        {
+            get => _type;
+        }
+
         public Record()
         {
             _id = Guid.NewGuid();
-            _creationDate = DateTime.Now;
+            _creationDate = DateTime.Now.ToUniversalTime();
         }
 
         public Record(Guid id, DateTime creationDate)
@@ -47,7 +54,7 @@ namespace ORMish
         {
             if (Table.Records.Count == 0)
             {
-                Console.WriteLine("The dictionary is empty.");
+                Debug.Log("The table has no records.");
                 return new List<T>();
             }
             return Table.Records.Values.ToList();
@@ -82,6 +89,13 @@ namespace ORMish
         public static void ReloadRecords()
         {
             Table.Initialize();
-        }   
+        }
+
+        public static void ConnectToTable()
+        {
+            Console.WriteLine($"ConnectToTable called for type: {typeof(T).Name}");
+            // table file gets created on instantiating a new table
+            _table = new Table<T>();
+        }
     }
 }

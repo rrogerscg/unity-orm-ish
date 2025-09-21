@@ -31,7 +31,7 @@ namespace ORMish
 
         public void Register(ITable table)
         {
-            UnityEngine.Debug.Log($"Registering table {table.Name} to the table registry");
+            Console.WriteLine($"Registering table {table.Name} to the table registry");
             _tablesByTableName[table.Name] = table;
         }
 

@@ -11,8 +11,7 @@ public abstract class BaseTestFixture
     public virtual void SetUp()
     {
         tableDirectory = Path.Combine(Application.temporaryCachePath, "tables");
-        UserCharacter.Table = new Table<UserCharacter>();
-        Score.Table = new Table<Score>();
+        DatabaseManager.Initialize(tableDirectory);
     }
 
     [TearDown]
