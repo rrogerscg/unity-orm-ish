@@ -10,29 +10,30 @@ I wanted to really push my understanding of generics, as I know they can be quit
 Another reason this project was created was my need for a light-weight, local database for my cross-platform game created with Unity.
 
 #### What this project is
-Extremely light-weight, cross-platform database
-Viable for tables with a few thousand entries
+Cross-platform<br>
+Extremely light-weight<br>
+Viable for tables with a few thousand entries<br>
 
 #### What this project is NOT
 This is not scalable<br>
 This is not an enterprise-ready solution
 
 #### Features
-Data-binding layer
-NoSQL databse type
+Data-binding layer<br>
+NoSQL database type<br>
+Easy unit testing<br>
 Memory Caching to limit I/O operations
-Easy unit testing
 
 
 #### Features TODO (In no particular order)
+Tempfile writes and backups<br>
+More robust unique field system<br>
+Option to enforce a field to not be null<br>
+Index system for caching complex lookups<br>
 FK relationships with helper methods for loading
-Index system for caching complex lookups
-Tempfile writes and backups
-More robust unique field system
-Option to enforce a field to not be null
 
 #### Usage Example
-If you have experience with Google Datastore NDB(I know...) library for Python, then you already know how to use this, as it's based off that with similar verbs for CRUD operations.
+If you have experience with the Google Datastore NDB(I know...) library for Python, then you already know how to use this, as it's based off that with similar verbs for CRUD operations.
 
 1. Create your model class
 ```csharp
@@ -61,7 +62,7 @@ public class User : Record<User>
 2. Instantiate a model instance, commmit to in-memory database, then perist to JSON file
 ```csharp
 //Initialize Database Manager singleton and then call Initialize method with directory where you want the 'tables' folder to be created
-DatabaseManager.Instance.Initialize(<path/to/local/persistence/folder>);
+DatabaseManager.Initialize(<path/to/local/persistence/folder>);
 // create record
 User user = new User("rrogerscg", "37");
 // add record to in-memory database (record by record id hash table)
