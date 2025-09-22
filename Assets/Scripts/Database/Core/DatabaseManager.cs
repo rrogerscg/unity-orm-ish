@@ -34,7 +34,6 @@ namespace ORMish
                     if (_instance == null)
                     {
                         _instance = new DatabaseManager(tablesPath);
-                        //TableRegistry.Instance.Register(this);
                         List<Type> recordTypes = Instance.GetAllRecordTypes();
                         if (recordTypes.Count > 0)
                         {

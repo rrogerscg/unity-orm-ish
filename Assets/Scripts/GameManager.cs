@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ORMish;
 using UnityEngine;
 using static Example.SceneState;
 
@@ -60,6 +61,7 @@ namespace Example
             {
                 PersistenceEvents.UserCharactersExist?.Invoke(false);
             }
+            TableRegistry.Instance.PrintRegistry();
         }
 
         public bool CharacterDataIsLoaded()

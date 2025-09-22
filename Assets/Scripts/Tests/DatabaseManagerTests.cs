@@ -19,8 +19,8 @@ public class TableTests : BaseTestFixture
     [Test]
     public void TestCreateInstance()
     {
-        Assert.AreEqual("Users", UserCharacter.Table.Name);
-        Assert.AreEqual("Scores", Score.Table.Name);
+        Assert.AreEqual("UserCharacter", UserCharacter.Table.Name);
+        Assert.AreEqual("Score", Score.Table.Name);
     }
 
     [Test]

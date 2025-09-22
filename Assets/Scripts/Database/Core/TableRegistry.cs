@@ -43,6 +43,14 @@ namespace ORMish
                 Console.WriteLine($"{kvp.Key}: {kvp.Value}");
             }
         }
+
+        public void ClearAllTables()
+        {
+            foreach(ITable table in _tablesByTableName.Values)
+            {
+                table.DeleteAllRecords();
+            }
+        }
     }
 }
 

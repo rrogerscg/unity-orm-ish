@@ -35,6 +35,7 @@ namespace ORMish
 
         public void Initialize()
         {
+            TableRegistry.Instance.Register(this);
             _records.Clear();
             _records = LoadRecords();
         }
