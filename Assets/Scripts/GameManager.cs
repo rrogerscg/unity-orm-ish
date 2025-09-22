@@ -51,6 +51,7 @@ namespace Example
             _instance = this;
             _userIsSubscribed = false;
             DontDestroyOnLoad(gameObject);
+            InputActionsMap.Initialize();
             _persistenceManager = PersistenceManager.Instance;
         }
 
@@ -92,7 +93,7 @@ namespace Example
         //    Debug.Log("All scenes are fully initialized.");
         //}
 
-        private void OnExitGameAction()
+        public void ExitGame()
         {
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
@@ -105,7 +106,7 @@ namespace Example
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                OnExitGameAction();
+                ExitGame();
             }
         }
     }

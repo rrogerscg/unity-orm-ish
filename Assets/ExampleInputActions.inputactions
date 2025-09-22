@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "name": "ExampleInputActions",
+    "maps": [
+        {
+            "name": "Dev",
+            "id": "7e365460-faec-4384-be7f-baf9093bc4e6",
+            "actions": [
+                {
+                    "name": "ToggleConsole",
+                    "type": "Button",
+                    "id": "2645f3ad-eafc-40ba-8ab9-c4065db9b9c2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ExecuteCommand",
+                    "type": "Button",
+                    "id": "6ae9567a-d204-4d9c-809f-ff0f578b7c5e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "dfa61a72-269b-4bd9-b393-9792e25d386a",
+                    "path": "<Keyboard>/backquote",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleConsole",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e0ed066-8692-4f05-9a7f-8b0ee9150025",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExecuteCommand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
