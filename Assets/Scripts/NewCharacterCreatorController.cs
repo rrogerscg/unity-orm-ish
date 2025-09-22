@@ -57,6 +57,7 @@ namespace Example
                 );
 
             character.Put();
+            ToastManager.ToastEvents.OnShowEvent?.Invoke($"New UserCharacter created with name: {character.Name}");
             UserCharacter.Table.Save();
             Debug.Log($"New UserCharacter created");
         }
