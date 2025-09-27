@@ -1,0 +1,15 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UXML/diagnostics.uss?fileID=7433441132597879392&amp;guid=73897656c1c9b434583049e7be3411a5&amp;type=3#diagnostics" />
+    <ui:VisualElement name="Panel" class="Panel" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.33); font-size: 28px; color: rgb(10, 255, 0);">
+        <ui:VisualElement name="FPSView" class="FlexRow">
+            <ui:Label text="FPS:" />
+            <ui:VisualElement name="FloatContainer" style="flex-grow: 1; min-width: 10%; max-width: 100%; overflow: hidden;">
+                <ui:Label text="000" data-source-type="Example.FPSCounter, Assembly-CSharp" style="min-width: auto; max-width: none;">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="AverageFPS" data-source-type="Example.FPSCounter, Assembly-CSharp" binding-mode="ToTarget" update-trigger="OnSourceChanged" />
+                    </Bindings>
+                </ui:Label>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

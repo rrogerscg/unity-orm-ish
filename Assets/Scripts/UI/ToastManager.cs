@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,14 +17,19 @@ namespace Example
         [SerializeField]
         private ToastTemplate _templateObject;
         private readonly int _queueCapacity = 6;
-        private Queue<ToastTemplate> _toastQueue;
+        private Queue<ToastTemplate> _toastPool;
+        private Queue<ToastTemplate> _activeToastQueue;
+        private Dictionary<ToastTemplate, Coroutine> _toastRoutineByTemplate;
+
         [SerializeField]
         private VerticalLayoutGroup _layoutGroup;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
 
         private void Awake()
         {
-            _toastQueue = new Queue<ToastTemplate>(_queueCapacity);
+            _toastPool = new(_queueCapacity);
+            _activeToastQueue = new(_queueCapacity);
+            _toastRoutineByTemplate = new();
         }
 
         private void Start()
@@ -31,30 +37,54 @@ namespace Example
             for (int i = 0; i < _queueCapacity; i++)
             {
                 ToastTemplate template = Instantiate(_templateObject, _layoutGroup.transform);
-                _toastQueue.Enqueue(template);
+                _toastPool.Enqueue(template);
             }
         }
 
         private void OnEnable()
         {
+  
             ToastEvents.OnShowEvent += ShowToast;
         }
 
         private void ShowToast(string message)
         {
-            StartCoroutine(ShowToastRoutine(message));
+            ToastTemplate toast;
+
+            if (_toastPool.Count > 0)
+            {
+                toast = _toastPool.Dequeue();
+            }
+            else
+            {
+                toast = _activeToastQueue.Dequeue();
+
+                // initially, I tried using IEnumerator directly, however it turns out that is not reliable for
+                // targeting the correct Coroutine in Unity.  Instead, we cache the actual Coroutine in a dict object
+                if (_toastRoutineByTemplate.TryGetValue(toast, out Coroutine oldCoroutine))
+                {
+                    StopCoroutine(oldCoroutine);
+                    _toastRoutineByTemplate.Remove(toast);
+                }
+
+                toast.gameObject.SetActive(false);
+            }
+
+            _activeToastQueue.Enqueue(toast);
+            Coroutine newCoroutine = StartCoroutine(ShowToastRoutine(toast, message));
+            _toastRoutineByTemplate[toast] = newCoroutine;
         }
 
-        private IEnumerator ShowToastRoutine(string message)
+        private IEnumerator ShowToastRoutine(ToastTemplate toast, string message)
         {
-            ToastTemplate toast = _toastQueue.Dequeue();
             toast.SetText(message);
             toast.gameObject.SetActive(true);
-
-            yield return new WaitForSeconds(6f);
-
+            yield return new WaitForSeconds(20f);
             toast.gameObject.SetActive(false);
-            _toastQueue.Enqueue(toast);
+
+            _toastRoutineByTemplate.Remove(toast);
+            _activeToastQueue = new Queue<ToastTemplate>(_activeToastQueue.Where(t => t != toast));
+            _toastPool.Enqueue(toast);
         }
     }
 }

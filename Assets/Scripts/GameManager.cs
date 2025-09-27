@@ -8,8 +8,9 @@ namespace Example
     public class GameManager : MonoBehaviour
     {
         private static GameManager _instance;
-        private static readonly object _lock = new object();
+        private static readonly object _lock = new();
         private static PersistenceManager _persistenceManager;
+        private static int _targetFPS = 300;
         public static GameManager Instance
         {
             get
@@ -63,6 +64,8 @@ namespace Example
                 PersistenceEvents.UserCharactersExist?.Invoke(false);
             }
             TableRegistry.Instance.PrintRegistry();
+
+            Application.targetFrameRate = _targetFPS;
         }
 
         public bool CharacterDataIsLoaded()

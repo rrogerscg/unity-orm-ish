@@ -1,0 +1,11 @@
+.Panel {
+    position: absolute;
+    right: 0.1%;
+    top: 0.1px;
+    min-width: 20%;
+    max-width: 20%;
+}
+
+.FlexRow {
+    flex-direction: row;
+}
