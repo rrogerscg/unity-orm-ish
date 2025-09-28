@@ -32,20 +32,26 @@ namespace Example
             RegisterCommand("time", ShowTime);
             RegisterCommand("close", CloseConsole);
             RegisterCommand("c", CloseConsole);
+            RegisterCommand("fps", ToggleFPS);
         }
 
         void OnEnable()
         {
             Application.logMessageReceived += HandleLog;
-            InputActionEvents.ToggleConsole += ToggleConsole;
-            InputActionEvents.OnExecuteCommand += OnExecuteCommand;
+            InputActions.SubscribeToToggleConsole(ToggleConsole);
+            InputActions.SubscribeToExecuteCommand(OnExecuteCommand);
         }
 
         void OnDisable()
         {
             Application.logMessageReceived -= HandleLog;
-            InputActionEvents.ToggleConsole += ToggleConsole;
-            InputActionEvents.OnExecuteCommand -= OnExecuteCommand;
+            InputActions.UnsubscribeFromToggleConsole(ToggleConsole);
+            InputActions.UnsubscribeFromExecuteCommand(OnExecuteCommand);
+        }
+
+        void ToggleFPS(string[] args)
+        {
+            FPSCounter.Events.ToggleFPS?.Invoke();
         }
 
         void HandleLog(string logString, string stackTrace, LogType type)
@@ -59,6 +65,7 @@ namespace Example
 
         private void ToggleConsole(InputAction.CallbackContext _)
         {
+            Debug.Log("ToggleConsole called");
             _doShowConsole = !_doShowConsole;
         }
 
@@ -171,7 +178,6 @@ namespace Example
             _logQueue.Enqueue($"[Console] {message}");
         }
 
-        // Built-in console commands
         private void ShowHelp(string[] args)
         {
             LogToConsole("Available commands:");

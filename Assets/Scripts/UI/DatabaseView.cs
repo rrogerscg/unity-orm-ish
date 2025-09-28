@@ -39,19 +39,11 @@ namespace Example
             {
                 Debug.LogError("rootVisualElement no found on UIDocument");
             }
-            else
-            {
-                Debug.Log($"_ui set to: {_ui}");
-            }
 
             _tableDropdown = _ui.Q<DropdownField>("TableDropdown");
             if (_tableDropdown == null)
             {
                 Debug.LogError("TableDropdown not hooked up to controller");
-            }
-            else
-            {
-                Debug.Log("TableDropdown hooked up to controller.");
             }
 
             _listView = _ui.Q<MultiColumnListView>("RecordsTable");

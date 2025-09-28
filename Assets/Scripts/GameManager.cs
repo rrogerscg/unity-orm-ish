@@ -52,7 +52,7 @@ namespace Example
             _instance = this;
             _userIsSubscribed = false;
             DontDestroyOnLoad(gameObject);
-            InputActionsMap.Initialize();
+            InputActions.Initialize();
             _persistenceManager = PersistenceManager.Instance;
         }
 
