@@ -18,12 +18,13 @@ namespace Example
         private float _nextUpdate;
         private PropertyChangedEventArgs _changedArgs;
 
-        [SerializeField] private UIDocument uiDocument;
+        [SerializeField] private UIDocument _uiDocument;
 
         private VisualElement _fpsContainer;
         private StyleEnum<DisplayStyle> _fpsContainerDisplayStyle;
 
-        [SerializeField]
+        public bool ShouldDisplayFPS => _fpsContainer.enabledSelf;
+
         public string AverageFPS
         {
             get => _averageFPS;
@@ -42,11 +43,14 @@ namespace Example
         void Start()
         {
             _changedArgs = new PropertyChangedEventArgs(nameof(AverageFPS));
-            uiDocument.rootVisualElement.dataSource = this;
+            _uiDocument.rootVisualElement.dataSource = this;
             _nextUpdate = Time.time + _updateFrequency;
-            _fpsContainer = uiDocument.rootVisualElement.Q("FPSContainer");
+            _fpsContainer = _uiDocument.rootVisualElement.Q("FPSContainer");
             _fpsContainerDisplayStyle = _fpsContainer.style.display;
+            ToggleFPS();
         }
+
+        
 
         void OnEnable()
         {
@@ -76,7 +80,7 @@ namespace Example
             }
         }
 
-        private void ToggleFPS()
+        public void ToggleFPS()
         {
             _fpsContainer.SetEnabled(!_fpsContainer.enabledSelf);
             _fpsContainer.style.display = _fpsContainer.enabledSelf ? _fpsContainerDisplayStyle : DisplayStyle.None;
