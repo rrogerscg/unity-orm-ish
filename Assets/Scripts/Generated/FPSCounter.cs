@@ -25,6 +25,7 @@ namespace Example
 
         public bool ShouldDisplayFPS => _fpsContainer.enabledSelf;
 
+        [SerializeField]
         public string AverageFPS
         {
             get => _averageFPS;
@@ -67,6 +68,10 @@ namespace Example
             if (_fpsContainer.enabledSelf)
             {
                 _fpsBuffer[_fpsBufferIndex] = 1.0f / Time.deltaTime;
+                // this is a circular buffer
+                // Explanation:
+                // when _fpsBufferIndex reaches 49 and added to 1 = 50
+                // then we 50 modulo 50, which is 0 and sets the index back to 0
                 _fpsBufferIndex = (_fpsBufferIndex + 1) % _fpsBuffer.Length;
 
                 if (Time.time > _nextUpdate)
@@ -84,6 +89,8 @@ namespace Example
         {
             _fpsContainer.SetEnabled(!_fpsContainer.enabledSelf);
             _fpsContainer.style.display = _fpsContainer.enabledSelf ? _fpsContainerDisplayStyle : DisplayStyle.None;
+            string state = _fpsContainer.enabledSelf ? "enabled" : "disabled";
+            ToastManager.ToastEvents.OnShowEvent?.Invoke($"FPS has been {state}");
         }
     }
 }

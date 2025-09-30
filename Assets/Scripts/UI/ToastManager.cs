@@ -58,9 +58,8 @@ namespace Example
             else
             {
                 toast = _activeToastQueue.Dequeue();
-
                 // initially, I tried using IEnumerator directly, however it turns out that is not reliable for
-                // targeting the correct Coroutine in Unity.  Instead, we cache the actual Coroutine in a dict object
+                // targeting the correct Coroutine in Unity.  Instead, we cache the actual Coroutine(NOT the IEnumerator) in a dict object
                 if (_toastRoutineByTemplate.TryGetValue(toast, out Coroutine oldCoroutine))
                 {
                     StopCoroutine(oldCoroutine);
@@ -69,7 +68,6 @@ namespace Example
 
                 toast.gameObject.SetActive(false);
             }
-
             _activeToastQueue.Enqueue(toast);
             Coroutine newCoroutine = StartCoroutine(ShowToastRoutine(toast, message));
             _toastRoutineByTemplate[toast] = newCoroutine;
@@ -77,9 +75,12 @@ namespace Example
 
         private IEnumerator ShowToastRoutine(ToastTemplate toast, string message)
         {
-            toast.SetText(message);
             toast.gameObject.SetActive(true);
-            yield return new WaitForSeconds(20f);
+            toast.StartToast(message, 10f);
+            while (toast.IsAlive)
+            {
+                yield return null;
+            }
             toast.gameObject.SetActive(false);
 
             _toastRoutineByTemplate.Remove(toast);
