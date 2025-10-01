@@ -14,9 +14,11 @@ jobs:
     - name: Cache Unity
       uses: actions/cache@v3
       with:
-        path: |
-          C:\Program Files\Unity\Hub\Editor
-        key: unity-cache-2025
+        path: Library
+        key: Library-${{ runner.os }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+        restore-keys: |
+          Library-${{ runner.os }}-
+          Library-
 
     - name: Unity - Builder
       uses: game-ci/unity-builder@v4.5.0
