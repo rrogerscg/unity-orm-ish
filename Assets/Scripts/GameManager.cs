@@ -68,6 +68,14 @@ namespace Example
             Application.targetFrameRate = _targetFPS;
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                ExitGame();
+            }
+        }
+
         public bool CharacterDataIsLoaded()
         {
             return PersistenceManager.Instance.ActiveUserCharacter != null;
@@ -103,14 +111,6 @@ namespace Example
         #else
             Application.Quit();
         #endif
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                ExitGame();
-            }
         }
     }
 }

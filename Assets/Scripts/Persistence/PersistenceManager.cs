@@ -14,7 +14,7 @@ namespace Example
     public class PersistenceManager
     {
         private static PersistenceManager _instance;
-        private static readonly object _lock = new object();
+        private static readonly object _lock = new();
 
         public static PersistenceManager Instance
         {
@@ -58,12 +58,7 @@ namespace Example
         public void LoadUserCharacters()
         {
             _userCharacters = UserCharacter.GetAll();
-            foreach (UserCharacter userCharacter in _userCharacters)
-            {
-                Debug.Log("UserCharacter found: " + userCharacter.Name);
-                Debug.Log("UserCharacter id: " + userCharacter.Id);
-                Debug.Log("UserCharacter IsActive: " + userCharacter.IsActive);
-            }
+            Debug.Log($"{_userCharacters.Count} User Characters found");
             _activeUserCharacter = UserCharacter.GetActiveCharacter();
             if (_activeUserCharacter == null)
             {

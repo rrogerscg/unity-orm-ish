@@ -7,24 +7,26 @@ namespace Example
     {
         [SerializeField] private CharacterCardTemplate _characterCardTemplate;
         [SerializeField] private GameObject _content;
-        private List<CharacterCardTemplate> _characterSelectControllers;
+        private List<CharacterCardTemplate> _characterCardTemplates;
 
-        private void Start()
+        private void Awake()
         {
-            _characterSelectControllers = new();
+            _characterCardTemplates = new();
         }
 
 
         public void OnEnable()
         {
-            _characterSelectControllers.Clear();
-            PersistenceManager.Instance.LoadUserCharacters();
+            Debug.Log("OnEnable CharacterSelectController");
+            _characterCardTemplates.Clear();
             List<UserCharacter> userCharacters = PersistenceManager.Instance.UserCharacters;
+            Debug.Log("User characters loaded for CharacterSelectController");
             foreach (UserCharacter character in userCharacters)
             {
                 CharacterCardTemplate template = Instantiate(_characterCardTemplate, _content.transform);
                 template.SetStats(character);
-                _characterSelectControllers.Add(template);
+                template.gameObject.SetActive(true);
+                _characterCardTemplates.Add(template);
             }
         }
     }
