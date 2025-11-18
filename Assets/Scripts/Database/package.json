@@ -3,7 +3,7 @@
   "version": "0.1.0-alpha.1",
   "displayName": "Unity ORM ISH",
   "description": "ORM service built on top of json",
-  "unity": "6000",
+  "unity": "6000.1",
   "author": {
     "name": "Russell Rogers",
     "email": "coaaal@gmail.com",
