@@ -70,3 +70,7 @@ user.Put();
 // persist to JSON file
 User.Table.Save();
 ```
+
+# Installing into a Unity project
+1. With the Package Manager window, select the `+` icon at the top left and select "Install with git URL..."
+2. Paste in `https://github.com/rrogerscg/unity-orm-ish.git?path=/Assets/Scripts/Database`
