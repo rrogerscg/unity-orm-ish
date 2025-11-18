@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace ORMish
 {
@@ -54,7 +53,6 @@ namespace ORMish
         {
             if (Table.Records.Count == 0)
             {
-                Debug.Log("The table has no records.");
                 return new List<T>();
             }
             return Table.Records.Values.ToList();

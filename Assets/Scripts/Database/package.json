@@ -1,0 +1,21 @@
+{
+  "name": "com.jettgames.unityormish",
+  "version": "0.1.0-alpha.1",
+  "displayName": "Unity ORM ISH",
+  "description": "ORM service built on top of json",
+  "unity": "6000",
+  "author": {
+    "name": "Russell Rogers",
+    "email": "coaaal@gmail.com",
+    "url": "https://github.com/rrogerscg"
+  },
+  "keywords": [
+    "database",
+    "orm",
+    "unity"
+  ],
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.1"
+  },
+  "type": "library"
+}
