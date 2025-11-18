@@ -27,7 +27,7 @@ jobs:
         UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
         UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
       with:
-        unityVersion: 6000.2.4f1   # Your Unity version
+        unityVersion: 6000.2.7f2
         targetPlatform: StandaloneWindows64
 
     - name: Upload Build Artifacts
